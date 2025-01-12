@@ -19,11 +19,6 @@ public class RepositoryProxyHandler<U> implements InvocationHandler {
             return repository.executeQuery(method, queryAnnotation.value(), args);
         }
 
-        try {
-            Method implMethod = RepositoryImpl.class.getMethod(method.getName(), method.getParameterTypes());
-            return implMethod.invoke(repository, args);
-        } catch (NoSuchMethodException e) {
-            throw new UnsupportedOperationException("Method not supported: " + method.getName());
-        }
+        return method.invoke(repository, args);
     }
 }

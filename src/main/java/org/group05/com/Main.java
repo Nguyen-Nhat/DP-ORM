@@ -20,7 +20,7 @@ public class Main {
         RepositoryLoggingProxy<?> repositoryLoggingProxy = new RepositoryLoggingProxy<>(repo, new ConsoleLogging());
 
         SalaryRepository repository = entityManager.createRepository(SalaryRepository.class,repositoryLoggingProxy);
-        List<Salary>data = repository.findAll();
+        Salary data = repository.find(1);
         System.out.println(data);
     }
 }
